@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+            git branch: 'main', url: 'https://github.com/Smita-creator/Terraform-git-code-project.git'
+            }
+        }
+
+        stage('Terraform Init') {
+            steps {
+                dir('Day3-Statelocking') {
+                    sh 'terraform init'
+                }
+            }
+        }
+
+        stage('Terraform Plan') {
+            steps {
+                dir('Day3-Statelocking') {
+                    sh 'terraform plan -out=tfplan'
+                }
+            }
+        }
+       
+    }
+}
