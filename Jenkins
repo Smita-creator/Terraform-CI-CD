@@ -24,6 +24,14 @@ pipeline {
                 }
             }
         }
-       
+
+        stage('Terraform Apply') {
+            steps {
+                dir('Day3-Statelocking') {
+                    sh 'terraform apply -auto-approve tfplan'
+                }
+            }
+        }
+
     }
 }
