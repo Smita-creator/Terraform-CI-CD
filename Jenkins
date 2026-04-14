@@ -5,33 +5,27 @@ pipeline {
 
         stage('Checkout') {
             steps {
-            git branch: 'main', url: 'https://github.com/Smita-creator/Terraform-git-code-project.git'
+            git branch: 'main', url: 'https://github.com/Smita-creator/Terraform-CI-CD.git'
             }
         }
 
         stage('Terraform Init') {
             steps {
-                dir('Day3-Statelocking') {
-                    sh 'terraform init'
+                  sh 'terraform init'
                 }
             }
-        }
-
+        
         stage('Terraform Plan') {
             steps {
-                dir('Day3-Statelocking') {
-                    sh 'terraform plan -out=tfplan'
+                 sh 'terraform plan -out=tfplan'
                 }
             }
-        }
-
+    
         stage('Terraform Apply') {
             steps {
-                dir('Day3-Statelocking') {
-                    sh 'terraform apply -auto-approve tfplan'
+                  sh 'terraform apply -auto-approve'
                 }
             }
-        }
-
-    }
+      
+   }
 }
